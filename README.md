@@ -1,4 +1,5 @@
 <!-- regenerate: on (set to off if you edit this file) -->
+# the development of the draft has moved to https://github.com/hujun-open/ikev2-pqt-hybrid-auth-with-sep-cert
 
 # Post-Quantum Traditional (PQ/T) Hybrid PKI Authentication with separate certificates in the Internet Key Exchange Version 2 (IKEv2)
 

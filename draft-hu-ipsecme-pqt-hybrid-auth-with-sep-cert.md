@@ -379,11 +379,16 @@ The receiver verifies the hybrid AUTH payload as follows:
    public key from the immediately following CERT payload.  Validate both
    certificate paths according to the local policy and the requirements of
    {{RFC7296}}.
-4. If either certificate contains a RelatedCertificate extension, verify it as
+4. Both certificates MUST be accepted by local authorization policy as 
+   authenticating the same canonical IKE peer identity and PAD entry.
+   one example is local policy requires check peer's certificates subject 
+   against peer's IKEv2 ID, then the both peer's certificates must have same 
+   subject as peer's IKEv2 ID.
+5. If either certificate contains a RelatedCertificate extension, verify it as
    specified in {{related-certificate}}.
-5. Construct the composite public key using the SerializePublicKey operation
+6. Construct the composite public key using the SerializePublicKey operation
    defined in {{Section 4.1 of I-D.ietf-lamps-pq-composite-sigs}}.
-6. Run the Verify operation defined in
+7. Run the Verify operation defined in
    {{Section 3.3 of I-D.ietf-lamps-pq-composite-sigs}} with:
 
    * `pk`: the output of SerializePublicKey;
@@ -393,7 +398,7 @@ The receiver verifies the hybrid AUTH payload as follows:
      null terminator); and
    * `sig`: the Signature Value from the Authentication Data field.
 
-7. If Verify returns failure, reject the IKE_AUTH exchange with
+8. If Verify returns failure, reject the IKE_AUTH exchange with
    AUTHENTICATION_FAILED.
 
 # Security Considerations
